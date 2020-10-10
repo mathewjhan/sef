@@ -20,8 +20,8 @@ This will run whatever command you set for `*.md` on `README.md`.
 
 ## Install
 
-- Copy `sef` to `./local/bin`
-- Ensure that `./local/bin` in your `$PATH`
+- Copy `sef` to `~/.local/bin`
+- Ensure that `~/.local/bin` in your `$PATH`
 - Create a config file `sef.conf` at `$XDG_CONFIG_HOME/sef`
 
 ### `sef.conf` format
