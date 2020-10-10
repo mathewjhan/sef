@@ -24,7 +24,7 @@ This will run whatever command you set for `*.md` on `README.md`.
 - Ensure that `./local/bin` in your `$PATH`
 - Create a config file `sef.conf` at `$XDG_CONFIG_HOME/sef`
 
-### `senf.conf` format
+### `sef.conf` format
 
 The format of the config file is the following:
 
