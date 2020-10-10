@@ -1,4 +1,4 @@
-# sef (Shortcut Every File!)
+# sef (Shortcut Every File)
 
 ## Inspiration
 
