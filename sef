@@ -1,0 +1,41 @@
+#!/bin/bash
+
+CONFIG_FILE="$XDG_CONFIG_HOME/sef/sef.conf"
+
+usage() {
+  echo "Run CLI commands based on file extension."
+  echo "Usage: sef <PATH/TO/FILE>"
+}
+
+run() {
+  filename=$(basename -- "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+
+  while read line; do
+    linearray=($line)
+    command=${linearray[0]}
+    cases=${linearray[1]}
+    IFS="," read -ra exts <<< "$cases"
+
+    found=false
+    for i in "${exts[@]}"; do
+      if [ "$i" == "$extension" ] ; then
+        eval $command $1
+        found=true
+        break
+      fi
+    done
+
+    if [ "$found" = true ] ; then
+      break
+    fi
+  done < $CONFIG_FILE
+}
+
+if [ $# != 1 ] ; then 
+  usage
+  exit 1
+else
+  run $1
+fi
