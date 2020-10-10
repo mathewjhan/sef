@@ -12,13 +12,14 @@ run() {
   extension="${filename##*.}"
   filename="${filename%.*}"
 
+  found=false
+
   while read line; do
     linearray=($line)
     command=${linearray[0]}
     cases=${linearray[1]}
     IFS="," read -ra exts <<< "$cases"
 
-    found=false
     for i in "${exts[@]}"; do
       if [ "$i" == "$extension" ] ; then
         eval $command $1
@@ -31,6 +32,10 @@ run() {
       break
     fi
   done < $CONFIG_FILE
+
+  if [ "$found" = false ] ; then
+    echo "Command not found for extension"
+  fi
 }
 
 if [ $# != 1 ] ; then 
